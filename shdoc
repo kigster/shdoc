@@ -1,4 +1,6 @@
-#!/usr/bin/gawk -f
+=======
+#!/usr/bin/env awk -f
+# vim: ft=awk
 
 BEGIN {
     if (! style) {
@@ -403,9 +405,13 @@ in_example {
     next
 }
 
+<<<<<<< HEAD
 /^[ \t]*(function([ \t])+)?([a-zA-Z0-9_:-]+)([ \t]*)(\(([ \t]*)\))?[ \t]*\{/ \
     && (length(docblock) != 0 || description != "") && !in_example {
     debug("→ function")
+=======
+/^[ \t]*(function([ \t])+)?([a-zA-Z0-9\._:-]+)([ \t]*)(\(([ \t]*)\))?[ \t]*\{/ && docblock != "" {
+>>>>>>> f85a17b (Adding OS-X install script + supporting dots)
     if (is_internal) {
         debug("→ → function: it is internal, skip")
         is_internal = 0
@@ -414,7 +420,7 @@ in_example {
 
         is_internal = 0
         func_name = gensub(\
-            /^[ \t]*(function([ \t])+)?([a-zA-Z0-9_:-]+)[ \t]*\(.*/, \
+            /^[ \t]*(function([ \t])+)?([a-zA-Z0-9\._:-]+)[ \t]*\(.*/, \
             "\\3()", \
             "g" \
         )
